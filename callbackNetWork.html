@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<button id="btn">查看网络链接</button>
+<body>
+
+<script src="Walker.js"></script>
+<script>
+
+    //自定义回调函数用于判断服务器状态
+
+    function ping(callback){
+
+        //实例化对象
+        var img = new Image();
+
+        //设置src
+        img.src = '01.php';
+
+        //添加加载完成的事件
+        img.onload = function(){
+            //!!!!!!调用回调函数，并且传个参数，告诉它链接状态
+            callback(true);
+        }
+
+        //添加加载失败的事件
+        img.onerror = function(){
+            //!!!!!!调用回调函数，并且传个参数，告诉它链接状态
+            callback(false);
+        }
+    }
+
+    var btn = document.getElementById('btn');
+    Walker.addEvent(btn,'click',function(){
+        ping(function(state){
+            //判断连接时传递回调函数，并且该回调函数执行时 获取加载状态
+            console.log(state);
+        });
+    });
+</script>
+</body>
+</html>
