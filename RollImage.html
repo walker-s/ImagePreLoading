@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>滚动加载图片</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            height: 100%;
+        }
+        div{
+            height: 80%;
+            color:pink;
+            font-size: 36px;
+            background: url(img/loading.gif) no-repeat center;
+            transition: 0.8s;
+        }
+
+    </style>
+</head>
+<body>
+    <div>第1楼</div>
+    <div>第2楼</div>
+    <div>第3楼</div>
+    <div>第4楼</div>
+    <div>第5楼</div>
+    <div>第6楼</div>
+    <div>第7楼</div>
+    <div>第8楼</div>
+    <div>第9楼</div>
+    <div>第10楼</div>
+<script src="Walker.js"></script>
+<script>
+    //预加载10张图片
+    for(let i = 0 ;i<10;i++){
+        //实例化对象
+        var img = new Image();
+
+        img.src = 'img/'+i+'.jpg';
+    }
+
+    //获取元素
+    var div = document.getElementsByTagName('div');
+
+    //添加鼠标滚动事件
+
+    window.onscroll = function () {
+        //获取滚动条的位置
+        var sTop = Walker.getScrollTop();
+
+        //遍历div
+        for(let i = 0;i<div.length;i++){
+            //获取当前div的位置
+            var topImage = Walker.offset(div[i]).top;
+            console.log(`第几次:${i}`);
+            //判断滚动条的位置是否大于元素位置 大于就显示
+            if(sTop>=topImage){
+               //显示图片
+                div[i].style.backgroundImage = `url(img/${i}.jpg)`;
+                div[i].innerHTML = '哈哈已经到我这了~~~~，感谢皇上恩宠。';
+            }
+        }
+    }
+</script>
+</body>
+</html>
