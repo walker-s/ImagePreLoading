@@ -6,20 +6,27 @@
 </head>
 <body>
 
+<button id="btn">查询网络链接</button>
+<script src="Walker.js"></script>
 <script>
     /**
      * 使用脚本去加载图片
      */
 
+     //搞一个变量存储网络状态
+     var online = 0;
+
     //实例化图片对象
     var img = new Image();
 
     //设置图片地址
-    img.src = '';
+    img.src = '01.php';
 
     //添加，图片加载错误的事件
     img.onerror = function(){
-       console.log('come on,your net may have some trouble!!!')
+
+       console.log('come on,your net may have some trouble!!!');
+        online = 0;
     };
 
     //添加，图片加载成功的事件
@@ -27,10 +34,22 @@
 
         console.log('加载完成');
 
-        //5.找到图片设置SRC
+        //找到图片设置SRC
 
-        document.getElementById('demo').src = img.src;
+//        document.getElementById('demo').src = img.src;
+        online = 1;
     };
+
+    //用户按下是判断网络状态，添加单击事件
+    var btn = document.getElementById('btn');
+
+    Walker.addEvent(btn,'click',function(){
+        if(online){
+            console.log('当前网络连接正常');
+        }else{
+            console.log('您的网络连接不太好赶紧换网线吧。。。。');
+        }
+    });
 </script>
 </body>
 </html>
