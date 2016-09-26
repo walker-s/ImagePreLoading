@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    /**
+     * 使用脚本去加载图片
+     */
+
+    //实例化图片对象
+    var img = new Image();
+
+    //设置图片地址
+    img.src = '';
+
+    //添加，图片加载错误的事件
+    img.onerror = function(){
+       console.log('come on,your net may have some trouble!!!')
+    };
+
+    //添加，图片加载成功的事件
+    img.onload = function(){
+
+        console.log('加载完成');
+
+        //5.找到图片设置SRC
+
+        document.getElementById('demo').src = img.src;
+    };
+</script>
+</body>
+</html>
