@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>滚动刷屏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            line-height: 40px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+        <div>第1屏</div>
+        <div>第2屏</div>
+        <div>第3屏</div>
+        <div>第4屏</div>
+        <div>第5屏</div>
+        <div>第6屏</div>
+        <div>第7屏</div>
+        <div>第8屏</div>
+        <div>第9屏</div>
+        <div>第10屏</div>
+        <div>第11屏</div>
+        <div>第12屏</div>
+        <div>第13屏</div>
+        <div>第14屏</div>
+        <div>第15屏</div>
+        <div>第16屏</div>
+        <div>第17屏</div>
+        <div>第18屏</div>
+        <div>第19屏</div>
+        <div>第20屏</div>
+        <div>第21屏</div>
+        <div>第22屏</div>
+        <div>第23屏</div>
+        <div>第24屏</div>
+        <div>第25屏</div>
+        <div>第26屏</div>
+        <div>第27屏</div>
+        <div>第28屏</div>
+        <div>第29屏</div>
+        <div>第30屏</div>
+</body>
+
+<script src="Walker.js"></script>
+<script>
+    //获取页面元素
+
+    var div = document.getElementsByTagName('div');
+
+    //添加滚动事件
+    window.onscroll = function () {
+        //获取滚动条的位置
+        var sTop = Walker.getScrollTop();
+        console.log(sTop);
+        //遍历div
+        for(let i = 0 ; i < div.length; i++){
+
+            //获取当前元素相对与页面的位置
+            var  curTop = Walker.offset(div[i]).top;
+            console.log(curTop);
+
+            //如果滚动条位置大于等于当前元素位置 说明到了这个位置
+            if(sTop>=curTop){
+                div[i].style.background='pink';
+            }else{
+                div[i].style.background='';
+            }
+        }
+    }
+</script>
+</html>
